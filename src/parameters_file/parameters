@@ -4,3 +4,4 @@ MIP_gap_tolerance 1e-8
 integer_feasibility_tolerance 1e-6
 number_of_threads 1
 screen_output 1
+periods_ahead: 20 # number of periods ahead to consider in the BigM formulation. If periods_ahead == 0, then BigM is not used

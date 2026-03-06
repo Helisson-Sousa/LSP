@@ -10,6 +10,7 @@ Base.@kwdef mutable struct ExperimentParameters
     integer_feasibility_tolerance::Float64 = 1e6
     number_of_threads::Int64 = 1
     screen_output::Int64 = 1
+    periods_ahead::Int64 = 20  # number of periods ahead to consider in the BigM formulation. If periods_ahead == 0, then BigM is not used
 end
 
 export ExperimentParameters, read_parameters, set_solver_parameters
@@ -22,7 +23,8 @@ function read_parameters(parameters_file::String)
     MIP_gap_tolerance = param_data[3,2]
     integer_feasibility_tolerance = param_data[4,2]
     number_of_threads = param_data[5,2]
-    screen_output = param_data[6,2] 
+    screen_output = param_data[6,2]
+    periods_ahead = param_data[7,2] 
 
     parameters = ExperimentParameters(
         approach,
@@ -31,6 +33,7 @@ function read_parameters(parameters_file::String)
         integer_feasibility_tolerance,
         number_of_threads,
         screen_output,
+        periods_ahead
     )
 
     return parameters
