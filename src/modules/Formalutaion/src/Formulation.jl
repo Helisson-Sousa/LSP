@@ -22,7 +22,7 @@ function create_model!(data::InstanceData, model::Model)
         + data.inventoryCost[i, t] * s[i, t]
         for i in I, t in T))
 
-    @constraint(model, constrCapacity[t in T], 
+    @constraint(model, capacity_cons[t in T], 
         sum(data.productionTime[i, t] * x[i, t] +
         data.setupTime[i, t] * y[i,t] 
         for i in I) <= data.capacity[t])

@@ -27,6 +27,17 @@ mutable struct StdFormModelSolution
     status
 end
 
+mutable struct MasterModelSolution
+    obj::Float64                # Objective value of current master problem
+    primal_bound::Float64       # Stores the best primal bound so far
+    lambda                      # Vector of lambda variables values in current master solution
+    xDualCosts                  # Array of x vars dual contribution to pricing problem objective in current master solution
+    yDualCosts                  # Array of y vars dual contribution to pricing problem objective in current master solution
+    conv_duals                  # Array of dual values in convexity constraints in current master solution
+    status                      # Solution status of current master problem
+    columns                     # Vector of columns (ColumnData) in the current master problem        
+end
+
 export StatisticsData, setup_MIP_stats_file, setup_col_gen_stats_file, init_std_form_solution, StdFormModelSolution
 
 function init_std_form_solution(data::InstanceData)
